@@ -36,7 +36,7 @@ int main() {
 #ifdef Pre_Release
 	cout << "Running Pre-Release" << endl;
 	readEmails(); //read emails from the file if in pre-release mode
-#else	Release
+#else
 	cout << "Running Standard Version" << endl;
 #endif
 
