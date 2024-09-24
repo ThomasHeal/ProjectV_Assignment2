@@ -5,26 +5,35 @@
 
 using namespace std;
 
-struct student_data {
+/// <summary>
+/// Student structure, store student first and last name as strings
+/// </summary>
+struct STUDENT_DATA {
 	string first_name;
 	string last_name;
 };
 
 int main() {
+	vector<STUDENT_DATA> student_list;
 
-	//read from the file and just write everythnig to console
+	//Read student data from the "StudentData.txt" file
 	ifstream file("StudentData.txt");
 	string line;
-	while (getline(file, line)) {
-		cout << line << endl;
+
+	if (file.is_open()) {
+		while (getline(file, line)) {
+			STUDENT_DATA newStudent; //create new student data
+			stringstream ss(line);
+			getline(ss, newStudent.first_name, ','); //read first name, store it in new student first_name
+			getline(ss, newStudent.last_name, ','); //read last name, store it in new student last_name
+			student_list.push_back(newStudent); //add new student to the list
+		}
+		file.close();
 	}
-
-	//wait for user input
-	cout << "Press Enter to continue...";
-	cin.get();
-		
-
-
+	else {
+		cout << "Error: Unable to open file." << endl;
+		return 1;
+	}
 
 	return 1;
 }
