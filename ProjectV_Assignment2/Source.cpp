@@ -30,7 +30,7 @@ void readEmails() {
 	}
 }
 
-
+#define Pre_Release //define pre-release mode
 
 int main() {
 #ifdef Pre_Release
@@ -62,6 +62,7 @@ int main() {
 		return 1;
 	}
 
+	
 
 #ifdef _DEBUG
 	//print out the student list
@@ -70,6 +71,7 @@ int main() {
 	}
 #endif
 
+	cin.get();
 
 	return 1;
 }
