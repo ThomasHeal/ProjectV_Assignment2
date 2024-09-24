@@ -13,7 +13,34 @@ struct STUDENT_DATA {
 	string last_name;
 };
 
+/// <summary>
+/// Read student name + emails from the student data emails file
+/// </summary>
+void readEmails() {
+	ifstream emailFile("StudentData_Emails.txt");
+	string line;
+	if (emailFile.is_open()) {
+		while (getline(emailFile, line)) {
+			cout << line << endl; //print out the name and email on each line of document
+		}
+		emailFile.close();
+	}
+	else {
+		cerr << "Error: Unable to open file." << endl;
+	}
+}
+
+
+
 int main() {
+#ifdef Pre_Release
+	cout << "Running Pre-Release" << endl;
+	readEmails(); //read emails from the file if in pre-release mode
+#else
+	cout << "Running Standard Version" << endl;
+#endif
+
+
 	vector<STUDENT_DATA> student_list;
 
 	//Read student data from the "StudentData.txt" file
@@ -41,7 +68,6 @@ int main() {
 	for (int i = 0; i < student_list.size(); i++) {
 		cout << student_list[i].first_name << " " << student_list[i].last_name << endl;
 	}
-	cin.get();
 #endif
 
 
